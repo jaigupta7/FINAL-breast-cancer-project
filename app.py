@@ -14,6 +14,11 @@ def set_bg(image_file):
     st.markdown(
         f"""
         <style>
+        /* Remove Streamlit default header & footer */
+        header {{visibility: hidden;}}
+        footer {{visibility: hidden;}}
+
+        /* Background image with dark overlay */
         .stApp {{
             background-image:
                 linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
@@ -22,31 +27,48 @@ def set_bg(image_file):
             background-position: center;
         }}
 
+        /* Main content box */
         .content-box {{
-            background-color: rgba(255, 255, 255, 0.92);
-            padding: 30px;
-            border-radius: 12px;
-            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.93);
+            padding: 35px;
+            border-radius: 14px;
+            margin-top: 10px;
         }}
 
-        h1 {{ font-size: 42px !important; }}
-        h2 {{ font-size: 28px !important; }}
+        /* Title sizes */
+        h1 {{
+            font-size: 44px !important;
+            font-weight: 800;
+        }}
 
+        h2 {{
+            font-size: 30px !important;
+            font-weight: 700;
+        }}
+
+        /* Feature label text */
         label {{
-            font-size: 16px !important;
+            font-size: 18px !important;
             font-weight: 600;
         }}
 
+        /* Input box size */
         div[data-baseweb="input"] input {{
-            height: 36px !important;
-            padding: 4px 8px !important;
-            font-size: 14px !important;
+            height: 46px !important;
+            font-size: 16px !important;
+            padding: 6px 10px !important;
+        }}
+
+        /* Reduce extra top padding */
+        .block-container {{
+            padding-top: 1rem !important;
         }}
         </style>
         """,
         unsafe_allow_html=True
     )
 
+# Set background image
 set_bg("background.jpg")
 
 # ================================
@@ -71,7 +93,7 @@ st.subheader("Machine Learning Based Cancer Detection")
 st.markdown("---")
 
 # ================================
-# Input Section (BOTTOM)
+# Input Section
 # ================================
 st.markdown("## 🔢 Enter Medical Feature Values")
 
