@@ -14,7 +14,7 @@ def set_bg(image_file):
     st.markdown(
         f"""
         <style>
-        /* Remove Streamlit default header & footer */
+        /* Remove Streamlit header & footer */
         header {{visibility: hidden;}}
         footer {{visibility: hidden;}}
 
@@ -30,20 +30,29 @@ def set_bg(image_file):
         /* Main content box */
         .content-box {{
             background-color: rgba(255, 255, 255, 0.93);
-            padding: 35px;
+            padding: 28px;
             border-radius: 14px;
-            margin-top: 10px;
+            margin-top: 6px;
         }}
 
-        /* Title sizes */
+        /* Title spacing FIX */
         h1 {{
             font-size: 44px !important;
             font-weight: 800;
+            margin-bottom: 6px !important;
         }}
 
         h2 {{
-            font-size: 30px !important;
+            font-size: 28px !important;
             font-weight: 700;
+            margin-top: 0px !important;
+            margin-bottom: 10px !important;
+        }}
+
+        /* Reduce gap before sections */
+        h3 {{
+            margin-top: 8px !important;
+            margin-bottom: 10px !important;
         }}
 
         /* Feature label text */
@@ -59,9 +68,14 @@ def set_bg(image_file):
             padding: 6px 10px !important;
         }}
 
-        /* Reduce extra top padding */
+        /* Reduce top padding of page */
         .block-container {{
-            padding-top: 1rem !important;
+            padding-top: 0.5rem !important;
+        }}
+
+        /* Remove extra divider spacing */
+        hr {{
+            margin: 8px 0px !important;
         }}
         </style>
         """,
@@ -90,18 +104,19 @@ st.markdown('<div class="content-box">', unsafe_allow_html=True)
 st.title("🧬 Cancer Detection System")
 st.subheader("Machine Learning Based Cancer Detection")
 
-st.markdown("---")
+# SMALL divider (space reduced)
+st.markdown("<hr>", unsafe_allow_html=True)
 
 # ================================
 # Input Section
 # ================================
-st.markdown("## 🔢 Enter Medical Feature Values")
+st.markdown("### 🔢 Enter Medical Feature Values")
 
 input_data = []
-cols = st.columns(5)
+cols = st.columns(6)   # 🔥 6 FEATURES PER ROW
 
 for i, feature in enumerate(feature_names):
-    with cols[i % 5]:
+    with cols[i % 6]:
         value = st.number_input(
             label=feature,
             min_value=0.0,
@@ -111,7 +126,7 @@ for i, feature in enumerate(feature_names):
 
 input_array = np.array(input_data).reshape(1, -1)
 
-st.markdown("---")
+st.markdown("<hr>", unsafe_allow_html=True)
 
 # ================================
 # Prediction
